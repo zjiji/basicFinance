@@ -1,14 +1,13 @@
-package com.zkam.financeapp.api;
+package com.zkam.financeapp.api.rest;
 
+import com.zkam.financeapp.api.User;
+import com.zkam.financeapp.domain.UserEntity;
 import com.zkam.financeapp.mapping.CustomerAccountMapper;
 import com.zkam.financeapp.mapping.UserMapper;
 import com.zkam.financeapp.service.CustomerAccountService;
 import com.zkam.financeapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,7 +26,7 @@ public class UserController {
     CustomerAccountMapper customerAccountMapper;
 
     @GetMapping("/users")
-    List<User> listAllUsers() {
+    public List<User> listAllUsers() {
         return userService.findAll()
                 .stream()
                 .map(entity -> userMapper.mapToApiObject(entity))
@@ -35,17 +34,28 @@ public class UserController {
     }
 
     @GetMapping("/user/{userId}")
-    User getById(@PathVariable Long userId) {
-        return userMapper.mapToApiObject(userService.findByUserId(userId));
+    public User getById(@PathVariable Long userId) {
+        return userMapper.mapToDetailedApiObject(userService.findByUserId(userId));
     }
 
-    @PostMapping("/user/{name},{surName}")
-    User create(@PathVariable String name, @PathVariable String surName) {
-        return userMapper.mapToApiObject(userService.create(userMapper.mapToEntity(new User(name, surName))));
+    @PostMapping("/user/{name},{surname}")
+    public User create(@PathVariable String name, @PathVariable String surname) {
+        return userMapper.mapToApiObject(userService.create(userMapper.mapToEntity(new User(name, surname))));
+    }
+
+    @PostMapping("/user/{user}")
+    public User create(@PathVariable User user) {
+        return userMapper.mapToApiObject(userService.create(userMapper.mapToEntity(user)));
+    }
+
+    @DeleteMapping("/user/{id}")
+    public User delete(@PathVariable Long id) {
+        UserEntity byUserId = userService.findByUserId(id);
+        return userMapper.mapToApiObject(userService.delete(byUserId));
     }
 
     @PostMapping("/create-account/{userId},{initialCredit}")
-    User createAccount(@PathVariable Long userId, Optional<BigDecimal> initialCredit) {
+    public User createAccount(@PathVariable Long userId, Optional<BigDecimal> initialCredit) {
         return userMapper.mapToDetailedApiObject(userService.createAccount(userId, initialCredit.orElse(BigDecimal.ZERO)));
     }
 

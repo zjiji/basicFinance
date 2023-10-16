@@ -16,7 +16,7 @@ public class UserMapper {
         if (userEntity == null) return null;
         User user = new User();
         user.setName(userEntity.getName());
-        user.setSurName(userEntity.getSurName());
+        user.setSurname(userEntity.getSurName());
         user.setUserId(userEntity.getId());
         return user;
     }
@@ -25,7 +25,7 @@ public class UserMapper {
         if (userEntity == null) return null;
         User user = new User();
         user.setName(userEntity.getName());
-        user.setSurName(userEntity.getSurName());
+        user.setSurname(userEntity.getSurName());
         user.setUserId(userEntity.getId());
         user.setBalance(userEntity.getBalance());
         user.setAccounts(userEntity.getCustomerAccounts().stream()
@@ -36,7 +36,7 @@ public class UserMapper {
 
     public UserEntity mapToEntity(User user) {
         if (user == null) return null;
-        return new UserEntity(user.getName(), user.getSurName());
+        return new UserEntity(user.getName(), user.getSurname());
     }
 
 

@@ -1,4 +1,4 @@
-package com.zkam.financeapp.api;
+package com.zkam.financeapp.api.rest;
 
 import com.zkam.financeapp.validation.UserNotfoundException;
 import org.springframework.http.HttpStatus;
