@@ -8,10 +8,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MyClientAppApplication implements CommandLineRunner {
+public class MyFinanceApp implements CommandLineRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(MyClientAppApplication.class, args);
+        SpringApplication.run(MyFinanceApp.class, args);
     }
 
     @Autowired

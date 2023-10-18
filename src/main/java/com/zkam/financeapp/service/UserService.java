@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements EntityService<UserEntity> {
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -26,6 +26,12 @@ public class UserService {
 
     public UserEntity create(UserEntity userEntity) {
         return userRepository.save(userEntity);
+    }
+
+    @Override
+    public UserEntity delete(UserEntity entity) {
+        userRepository.delete(entity);
+        return entity;
     }
 
     public UserEntity createAccount(Long userId, BigDecimal initialCredit) {

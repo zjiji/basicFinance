@@ -1,31 +1,23 @@
 package com.zkam.financeapp.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
-import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
+@EqualsAndHashCode(callSuper = true)
+@Getter
 @Entity
 @Data
-public class CustomerAccountEntity {
+public class CustomerAccountEntity extends GeneratedIdEntity {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Getter
     @OneToOne
     private TransactionEntity transactionEntity;
 
-
     public CustomerAccountEntity() {
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public BigDecimal getAmount() {

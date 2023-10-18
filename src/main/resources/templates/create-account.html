@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/create-account/save}" th:object="${newAccount}" method="post">
+    <label for="name">Customer ID</label>
+    <input type="text" th:field="*{userId}" id="name" placeholder="Customer ID" readonly="readonly">
+    <span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+    <br><br>
+    <label for="amount">Amount</label>
+    <input type="number" th:field="*{transactionAmount}" id="amount" placeholder="Amount">
+    <span th:if="${#fields.hasErrors('transactionAmount')}" th:errors="*{transactionAmount}"></span>
+    <br><br>
+    <input type="submit" value="Add Account">
+</form>
+</body>
+</html>

@@ -15,7 +15,7 @@ public class User {
     @Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "User Name")
     private String name;
     @Schema(requiredMode = Schema.RequiredMode.REQUIRED, description = "User Surname")
-    private String surName;
+    private String surname;
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, description = "User Id")
     private Long userId;
 
@@ -29,15 +29,15 @@ public class User {
 
     public User(String name, String surName) {
         this.name = name;
-        this.surName = surName;
+        this.surname = surName;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public void setUserId(Long userId) {

@@ -11,9 +11,12 @@ import java.math.BigDecimal;
 public class CustomerAccount {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, description = "Customer Account Id")
+    private Long userId;
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY, description = "Customer Account Id")
     private Long accountId;
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, description = "Transaction amount of the account.")
     private BigDecimal transactionAmount;
+
     public CustomerAccount() {
     }
 
@@ -25,4 +28,7 @@ public class CustomerAccount {
         this.accountId = accountId;
     }
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }

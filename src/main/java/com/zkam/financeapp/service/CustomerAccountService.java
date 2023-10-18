@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Service
-public class CustomerAccountService {
+public class CustomerAccountService implements EntityService<CustomerAccountEntity> {
     @Autowired
     CustomerAccountRepository customerAccountRepository;
     @Autowired
@@ -20,11 +20,19 @@ public class CustomerAccountService {
 
         if (!Objects.equals(initialCredit, BigDecimal.ZERO)) {
             customerAccount.setTransactionEntity(transactionService.create(new TransactionEntity(customerAccount.getId(), initialCredit)));
-
         }
-        customerAccount = customerAccountRepository.save(customerAccount);
-
-        return customerAccount;
+        return create(customerAccount);
     }
 
+    @Override
+    public CustomerAccountEntity create(CustomerAccountEntity entity) {
+        entity = customerAccountRepository.save(entity);
+        return entity;
+    }
+
+    @Override
+    public CustomerAccountEntity delete(CustomerAccountEntity entity) {
+        customerAccountRepository.delete(entity);
+        return entity;
+    }
 }
