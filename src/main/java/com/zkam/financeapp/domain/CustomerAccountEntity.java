@@ -1,10 +1,10 @@
 package com.zkam.financeapp.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
-import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -19,6 +19,7 @@ public class CustomerAccountEntity extends GeneratedIdEntity {
 
     public CustomerAccountEntity() {
     }
+
     public BigDecimal getAmount() {
         if (transactionEntity == null) return BigDecimal.ZERO;
         return transactionEntity.getAmount();
